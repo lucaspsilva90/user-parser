@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+    ports:
+      - "27017:27017"
+    volumes:
+      - /usr/mongodb/data/mongodb
+  app:
+    build: .
+    container_name: linkapi-test
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
+    links:
+      - mongo
+    depends_on:
+      - mongo
+  scheduler:
+    image: amplication/scheduler
+    command: --request.url http://app/example-route --request.method POST --schedule '* * * * *'
+volumes:
+  mongodb:
+    driver: local
