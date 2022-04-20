@@ -6,5 +6,8 @@ module.exports = (dependencies) => ({
     mongo: dependencies.mongo,
     repository: dependencies.repository,
     CustomError: dependencies.CustomError,
+    services: dependencies.services,
+    RateLimiter: dependencies.RateLimiter,
+    PromisePool: dependencies.PromisePool,
   }).parseUserToDb,
 });

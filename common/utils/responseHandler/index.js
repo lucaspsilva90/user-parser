@@ -22,7 +22,6 @@ const genericErrorHandler = (responseError) => {
     errorInfo: {
       responseId: v1(),
       service: config.service.name,
-      env: config.service.env,
       message: message || error.message,
       statusCode: statusCode || 500,
     },

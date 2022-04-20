@@ -6,6 +6,8 @@ const mongo = require('../../common/libs/db');
 const repository = require('../repository');
 const { CustomError } = require('../../common/utils/customError/index');
 const services = require('../../services');
+const { RateLimiter } = require('limiter');
+const { PromisePool } = require('@supercharge/promise-pool')
 
 const adapters = require('../adapters')({
   config,
@@ -15,6 +17,8 @@ const adapters = require('../adapters')({
   CustomError,
   services,
   uuid,
+  RateLimiter,
+  PromisePool
 });
 
 module.exports = factory({

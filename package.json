@@ -11,9 +11,18 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^20.2.1",
+    "@supercharge/promise-pool": "^2.1.0",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "limiter": "^2.1.0",
     "mongodb": "^4.5.0",
     "uuid": "^8.3.2",
     "winston": "^3.7.2",
-    "xml2js": "^0.4.23"
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
   }
 }
