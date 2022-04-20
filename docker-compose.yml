@@ -5,6 +5,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
       MONGO_INITDB_ROOT_PASSWORD: "${MONGO_INITDB_ROOT_PASSWORD}"
+      MONGO_INITDB_DATABASE: "${MONGO_INITDB_DATABASE}"
     ports:
       - "27017:27017"
     volumes:
@@ -23,7 +24,9 @@ services:
       - mongo
   scheduler:
     image: amplication/scheduler
-    command: --request.url http://app/example-route --request.method POST --schedule '* * * * *'
+    links:
+      - app
+    command: --request.url http://host.docker.internal:3000/v1/users --request.method GET --schedule '*/20 * * * *'
 volumes:
   mongodb:
     driver: local

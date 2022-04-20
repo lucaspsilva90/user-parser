@@ -3,7 +3,6 @@ FROM node
 WORKDIR /usr/app
 COPY package.json ./
 
-RUN npm install nodemon -g
 RUN npm install
 
 COPY . .

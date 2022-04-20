@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-underscore-dangle */
 
@@ -30,7 +31,7 @@ const userWrapper = ({
 
       const flatUsers = users.flatMap((usersToBeParsed) => usersToBeParsed);
 
-      const { results } = await PromisePool
+      const parsedUsers = await PromisePool
         .for(flatUsers)
         .withConcurrency(1)
         .process(async (user) => {
@@ -41,27 +42,48 @@ const userWrapper = ({
 
           await limiter.removeTokens(2);
 
-          const buildAddress = (address) => address.data.item.street._text
-            || address.data.item[0].street._text;
+          const buildAddress = (address) => {
+            if (!address.data.item) return null;
+            if (address.data.item && address.data.item.length > 0) return address.data.item[0].street._text;
+            return address.data.item.street._text;
+          };
 
-          const buildAddressNumber = (address) => address.data.item.number._text
-            || address.data.item[0].number._text;
+          const buildAddressNumber = (address) => {
+            if (!address.data.item) return null;
+            if (address.data.item && address.data.item.length > 0) return address.data.item[0].number._text;
+            return address.data.item.number._text;
+          };
 
-          const buildPhoneNumber = (contacts) => contacts.data.item.phoneNumber._text
-            || contacts.data.item[0].phoneNumber._text;
+          const buildPhoneNumber = (contacts) => {
+            if (!contacts.data.item) return null;
+            if (contacts.data.item && contacts.data.item.length > 0) return contacts.data.item[0].phoneNumber._text;
+            return contacts.data.item.phoneNumber._text;
+          };
 
           return {
+            _id: user.id._text,
             fullName: `${user.firstName._text} ${user.lastName._text}`,
             email: user.email._text,
             address: buildAddress(addressInfo),
             addressNumber: buildAddressNumber(addressInfo),
             phoneNumber: buildPhoneNumber(contactInfo),
+            created_at: Date.now(),
           };
         });
 
       await mongo.connect(config.db.url, config.db.name);
 
-      await repository.User.bulkInsert(results);
+      const saveUsersToDb = (usersToBeSaved) => {
+        const results = PromisePool
+          .for(usersToBeSaved)
+          .withConcurrency(5)
+          .process(async (user) => {
+            await repository.User.createOrUpdateWithWhere({ _id: user._id }, { $set: user });
+          });
+        return results;
+      };
+
+      await saveUsersToDb(parsedUsers.results);
 
       const response = {
         status: 200,
