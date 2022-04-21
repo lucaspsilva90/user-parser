@@ -7,4 +7,8 @@ module.exports = {
     db,
     collectionName: config.db.collections.user,
   }),
+  GoFile: factory({
+    db,
+    collectionName: config.db.collections.goFile,
+  }),
 };

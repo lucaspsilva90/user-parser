@@ -5,7 +5,7 @@ module.exports = ({
   collectionName,
 }) => ({
   insert: (message) => db.collection(collectionName)
-    .insertOne({ _id: v4(), ...message })
+    .insertOne(message)
     .then((result) => db.collection(collectionName).findOne({ _id: result.insertedId })),
   insertMany: (messages) => db.collection(collectionName)
     .insertMany(messages, {
