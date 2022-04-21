@@ -17,7 +17,7 @@ const userWrapper = ({
     try {
       const users = [];
 
-      const limiter = new RateLimiter({ tokensPerInterval: 20, interval: 'minute' });
+      const limiter = new RateLimiter({ tokensPerInterval: 25, interval: 'minute' });
 
       const firstResponse = await services.linkApi.getUsers(10, 1);
       users.push(firstResponse.data.usersList.item);
