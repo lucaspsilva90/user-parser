@@ -9,7 +9,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /usr/mongodb/data/mongodb
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
   app:
     build: .
     container_name: linkapi-test
@@ -26,7 +26,9 @@ services:
     image: amplication/scheduler
     links:
       - app
-    command: --request.url http://host.docker.internal:3000/v1/users --request.method GET --schedule '*/20 * * * *'
+    depends_on:
+      - app
+    command: --request.url http://host.docker.internal:3000/v1/users --request.method GET --schedule '0 * * * *'
 volumes:
   mongodb:
     driver: local
