@@ -4,18 +4,6 @@ const goFileCrudWrapper = ({
   mongo,
   services,
 }) => {
-  // const get = async ({
-  //   onSuccess,
-  //   onError,
-  // }) => {
-  //   try {
-  //     await mongo.connect(config.db.url, config.db.name);
-  //     const response = await repository.User.find({}, { projection: { password: 0 } });
-  //     return onSuccess(response);
-  //   } catch (error) {
-  //     return onError(error);
-  //   }
-  // };
   const createFolder = async ({
     payload,
     onSuccess,
@@ -37,10 +25,10 @@ const goFileCrudWrapper = ({
 
       await mongo.connect(config.db.url, config.db.name);
 
-      const dbResponse = await repository.GoFile.insert(folder);
+      const dbResponse = await repository.Folders.insert(folder);
 
       const response = {
-        status: 'OK!',
+        message: 'OK!',
         statusCode: 201,
         dbResponse,
       };
@@ -52,29 +40,72 @@ const goFileCrudWrapper = ({
 
   const uploadFile = async ({
     payload,
-    params,
     onSuccess,
     onError,
   }) => {
     try {
-      const { id } = params;
-
+      const { file, folderName } = payload;
       await mongo.connect(config.db.url, config.db.name);
-      const response = await repository.User
-        .createOrUpdateWithWhere({ _id: id }, { $set: payload });
+
+      const folder = await repository.Folders.findOne({ name: folderName });
+      if (!folder) return onError({ message: 'This folder does not exists.', statusCode: 404 });
+
+      const { _id: folderId } = folder;
+
+      const goFileUploadResponse = await services.goFile.uploadFile({
+        file,
+        folderId,
+      });
+
+      const { data: { data: { fileId, fileName, parentFolder } } } = goFileUploadResponse;
+
+      const fileToBeSaved = {
+        _id: fileId,
+        name: fileName,
+        folderId: parentFolder,
+      };
+
+      await repository.Files.insert(fileToBeSaved);
+
+      const response = {
+        statusCode: 200,
+        message: 'File uploaded successfully!',
+      };
+
       return onSuccess(response);
     } catch (error) {
       return onError(error);
     }
   };
 
-  const deleteFile = async ({
-    params,
+  const deleteContent = async ({
     onSuccess,
     onError,
+    payload,
   }) => {
     try {
-      return onSuccess();
+      const { folderName, fileName } = payload;
+
+      await mongo.connect(config.db.url, config.db.name);
+
+      const folder = await repository.Folders.findOne({ name: folderName });
+      if (!folder) return onError({ message: 'This folder does not exists.', statusCode: 404 });
+
+      const file = await repository.Files.findOne({ name: fileName });
+      if (!file) return onError({ message: 'This file does not exists.', statusCode: 404 });
+
+      const { _id: fileId } = file;
+
+      const { data: { data: goFileDeleteResponse } } = await services.goFile.deleteContent(fileId);
+
+      if (goFileDeleteResponse[fileId] === 'ok') await repository.Files.destroy({ _id: fileId });
+
+      const response = {
+        statusCode: 200,
+        message: 'File deleted successfully!',
+      };
+
+      return onSuccess(response);
     } catch (error) {
       return onError(error);
     }
@@ -83,7 +114,7 @@ const goFileCrudWrapper = ({
   return {
     createFolder,
     uploadFile,
-    deleteFile,
+    deleteContent,
   };
 };
 

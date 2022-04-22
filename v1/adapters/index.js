@@ -25,11 +25,11 @@ module.exports = (dependencies) => ({
     CustomError: dependencies.CustomError,
     services: dependencies.services,
   }).uploadFile,
-  deleteFile: goFileCrudWrapper({
+  deleteContent: goFileCrudWrapper({
     config: dependencies.config,
     mongo: dependencies.mongo,
     repository: dependencies.repository,
     CustomError: dependencies.CustomError,
     services: dependencies.services,
-  }).deleteFile,
+  }).deleteContent,
 });

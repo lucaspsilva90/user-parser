@@ -21,17 +21,17 @@ const goFileCrudControllerWrapper = ({
     return adapters.uploadFile({
       config,
       payload,
-      onSuccess: (response) => reply.response(response).code(200),
+      onSuccess: (response) => reply.response(genericSuccess(response)).code(200),
       onError: (error) => reply.response(errorHandler(error)).code(error.statusCode),
     });
   };
-  const deleteFile = async (request, reply) => {
-    const { params } = request;
+  const deleteContent = async (request, reply) => {
+    const { payload } = request;
 
-    return adapters.deleteFile({
+    return adapters.deleteContent({
       config,
-      params,
-      onSuccess: (response) => reply.response(response).code(200),
+      payload,
+      onSuccess: (response) => reply.response(genericSuccess(response)).code(200),
       onError: (error) => reply.response(errorHandler(error)).code(error.statusCode),
     });
   };
@@ -39,7 +39,7 @@ const goFileCrudControllerWrapper = ({
   const goFileCrudController = {
     createFolder,
     uploadFile,
-    deleteFile,
+    deleteContent,
   };
 
   return goFileCrudController;

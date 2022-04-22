@@ -5,11 +5,14 @@ const genericSuccessHandler = (successMessage) => {
   const { message, statusCode } = successMessage;
 
   const responseObject = {
-    responseId: v1(),
-    service: config.service.name,
-    env: config.env,
-    message,
-    statusCode,
+    status: 'SUCCESS',
+    info: {
+      responseId: v1(),
+      service: config.service.name,
+      env: config.env,
+      message,
+      statusCode,
+    },
   };
   return responseObject;
 };

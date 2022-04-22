@@ -5,5 +5,5 @@ module.exports = (adapters) => ({
   parseUserToDb: userController(adapters).parseUserToDb,
   createFolder: goFileCrudController(adapters).createFolder,
   uploadFile: goFileCrudController(adapters).uploadFile,
-  deleteFile: goFileCrudController(adapters).deleteFile,
+  deleteContent: goFileCrudController(adapters).deleteContent,
 });
