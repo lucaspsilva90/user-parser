@@ -10,6 +10,7 @@ module.exports = (dependencies) => ({
     services: dependencies.services,
     RateLimiter: dependencies.RateLimiter,
     PromisePool: dependencies.PromisePool,
+    logger: dependencies.logger,
   }).parseUserToDb,
   createFolder: goFileCrudWrapper({
     config: dependencies.config,
