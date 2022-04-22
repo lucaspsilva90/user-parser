@@ -21,6 +21,8 @@ module.exports = {
       baseUrl: 'https://linkapi-desafio-tech.gateway.linkapi.solutions/v1',
       user: process.env.LINKAPI_USER,
       password: process.env.LINKAPI_PASSWORD,
+      maxRequestsMinute: Number(process.env.LINKAPI_MAX_REQUESTS_MINUTE),
+      maxUsersPerRequest: Number(process.env.LINKAPI_MAX_USERS_REQUEST),
     },
     goFile: {
       baseUrl: 'https://api.gofile.io',
