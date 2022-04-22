@@ -18,7 +18,7 @@ A aplicação pode ser dividida em duas grande funcionalidades.
 
 ### Como rodar
 
-* Criar documento .env (informacoes disponíveis neste gist privado[AQUI](https://gist.github.com/lucaspsilva90/f12d448731d7cecbeb18d68323148059)
+* Criar documento .env (informacoes disponíveis neste gist privado [AQUI](https://gist.github.com/lucaspsilva90/f12d448731d7cecbeb18d68323148059)
 * Executar o comando docker-compose up --build (as vezes pode ser necessário da a permissão de administrador sudo)
 
 ### Como utilizar
