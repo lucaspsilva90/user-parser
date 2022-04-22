@@ -25,12 +25,11 @@ const goFileCrudWrapper = ({
 
       await mongo.connect(config.db.url, config.db.name);
 
-      const dbResponse = await repository.Folders.insert(folder);
+      await repository.Folders.insert(folder);
 
       const response = {
-        message: 'OK!',
+        message: 'Folder created successfully!',
         statusCode: 201,
-        dbResponse,
       };
       return onSuccess(response);
     } catch (error) {

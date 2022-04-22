@@ -1,5 +1,6 @@
 const { v1 } = require('uuid');
 const config = require('../../../config');
+const logger = require('../logger');
 
 const genericSuccessHandler = (successMessage) => {
   const { message, statusCode } = successMessage;
@@ -14,6 +15,7 @@ const genericSuccessHandler = (successMessage) => {
       statusCode,
     },
   };
+  logger.info(responseObject);
   return responseObject;
 };
 
@@ -29,6 +31,7 @@ const genericErrorHandler = (responseError) => {
       statusCode: statusCode || 500,
     },
   };
+  logger.error(responseObject);
   return responseObject;
 };
 

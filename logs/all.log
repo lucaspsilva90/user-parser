@@ -66,3 +66,9 @@
 {"level":"info","message":{"STEP":"HALF PARSED","info":{"currentUserIndex":50,"startTime":"4/22/2022 | 7:41:53 PM","usersCount":100}}}
 {"level":"info","message":{"STEP":"PARSE FINALIZED","info":{"startTime":"4/22/2022 | 7:45:55 PM","usersCount":100}}}
 {"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/22/2022 | 8:00:00 PM"}}}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":{"info":{"message":"OK!","responseId":"85548b90-c277-11ec-b1d6-056a0d8573d6","service":"linkapi-test","statusCode":201},"status":"SUCCESS"}}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":{"info":{"message":"Folder created successfully!","responseId":"ca3aa320-c277-11ec-8e0d-d3d1642ed8d9","service":"linkapi-test","statusCode":201},"status":"SUCCESS"}}
+{"level":"error","message":{"errorInfo":{"message":"This folder does not exists.","responseId":"db069060-c277-11ec-8e0d-d3d1642ed8d9","service":"linkapi-test","statusCode":404},"status":"ERROR"}}
