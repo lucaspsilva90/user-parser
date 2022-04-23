@@ -8,6 +8,7 @@ const mongo = require('../../common/libs/db');
 const repository = require('../repository');
 const { CustomError } = require('../../common/utils/customError/index');
 const services = require('../../services');
+const schemas = require('../schemas');
 
 const adapters = require('../adapters')({
   config,
@@ -23,4 +24,5 @@ const adapters = require('../adapters')({
 
 module.exports = factory({
   adapters,
+  schemas,
 });

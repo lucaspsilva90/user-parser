@@ -3,9 +3,11 @@ const goFileCrudWrapper = ({
   repository,
   mongo,
   services,
+  CustomError,
 }) => {
   const createFolder = async ({
     payload,
+    errors,
     onSuccess,
     onError,
   }) => {
@@ -13,6 +15,13 @@ const goFileCrudWrapper = ({
       const {
         folderName,
       } = payload;
+
+      if (errors.error) {
+        throw new CustomError({
+          message: errors.error.details[0].message,
+          statusCode: 400,
+        });
+      }
 
       const goFileResponse = await services.goFile.createFolder(folderName);
 
@@ -39,11 +48,20 @@ const goFileCrudWrapper = ({
 
   const uploadFile = async ({
     payload,
+    errors,
     onSuccess,
     onError,
   }) => {
     try {
       const { file, folderName } = payload;
+
+      if (errors.error) {
+        throw new CustomError({
+          message: errors.error.details[0].message,
+          statusCode: 400,
+        });
+      }
+
       await mongo.connect(config.db.url, config.db.name);
 
       const folder = await repository.Folders.findOne({ name: folderName });
@@ -78,12 +96,20 @@ const goFileCrudWrapper = ({
   };
 
   const deleteContent = async ({
+    payload,
+    errors,
     onSuccess,
     onError,
-    payload,
   }) => {
     try {
       const { folderName, fileName } = payload;
+
+      if (errors.error) {
+        throw new CustomError({
+          message: errors.error.details[0].message,
+          statusCode: 400,
+        });
+      }
 
       await mongo.connect(config.db.url, config.db.name);
 

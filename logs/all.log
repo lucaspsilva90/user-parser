@@ -72,3 +72,33 @@
 {"level":"info","message":"Server is running!"}
 {"level":"info","message":{"info":{"message":"Folder created successfully!","responseId":"ca3aa320-c277-11ec-8e0d-d3d1642ed8d9","service":"linkapi-test","statusCode":201},"status":"SUCCESS"}}
 {"level":"error","message":{"errorInfo":{"message":"This folder does not exists.","responseId":"db069060-c277-11ec-8e0d-d3d1642ed8d9","service":"linkapi-test","statusCode":404},"status":"ERROR"}}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/22/2022 | 9:00:00 PM"}}}
+{"level":"info","message":{"STEP":"INIT PARSE","info":{"startTime":"4/22/2022 | 9:00:08 PM","usersCount":100}}}
+{"level":"info","message":{"STEP":"HALF PARSED","info":{"currentUserIndex":50,"startTime":"4/22/2022 | 9:04:10 PM","usersCount":100}}}
+{"level":"info","message":{"STEP":"PARSE FINALIZED","info":{"startTime":"4/22/2022 | 9:08:11 PM","usersCount":100}}}
+{"level":"info","message":{"info":{"message":"Proccess Finalized with no errors!","responseId":"5103aac0-c280-11ec-80d5-b30b1806b1b0","service":"linkapi-test"},"status":"SUCCESS"}}
+{"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/22/2022 | 10:00:00 PM"}}}
+{"level":"error","message":{"errorInfo":{"message":"Request failed with status code 500","responseId":"8fa6ce90-c287-11ec-80d5-b30b1806b1b0","service":"linkapi-test","statusCode":500},"status":"ERROR"}}
+{"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/22/2022 | 11:00:00 PM"}}}
+{"level":"info","message":{"STEP":"INIT PARSE","info":{"startTime":"4/22/2022 | 11:00:08 PM","usersCount":100}}}
+{"level":"info","message":{"STEP":"HALF PARSED","info":{"currentUserIndex":50,"startTime":"4/22/2022 | 11:04:10 PM","usersCount":100}}}
+{"level":"info","message":{"STEP":"PARSE FINALIZED","info":{"startTime":"4/22/2022 | 11:08:11 PM","usersCount":100}}}
+{"level":"info","message":{"info":{"message":"Proccess Finalized with no errors!","responseId":"14d6a320-c291-11ec-80d5-b30b1806b1b0","service":"linkapi-test"},"status":"SUCCESS"}}
+{"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/23/2022 | 12:00:00 AM"}}}
+{"level":"info","message":{"STEP":"INIT PARSE","info":{"startTime":"4/23/2022 | 12:00:09 AM","usersCount":100}}}
+{"level":"info","message":{"STEP":"HALF PARSED","info":{"currentUserIndex":50,"startTime":"4/23/2022 | 12:04:09 AM","usersCount":100}}}
+{"level":"info","message":{"STEP":"PARSE FINALIZED","info":{"startTime":"4/23/2022 | 12:08:10 AM","usersCount":100}}}
+{"level":"info","message":{"info":{"message":"Proccess Finalized with no errors!","responseId":"75d1c7b0-c299-11ec-80d5-b30b1806b1b0","service":"linkapi-test"},"status":"SUCCESS"}}
+{"level":"info","message":{"STEP":"COLLECTING DATA","info":{"startTime":"4/23/2022 | 1:00:00 AM"}}}
+{"level":"error","message":{"errorInfo":{"message":"Request failed with status code 500","responseId":"b4e9f470-c2a0-11ec-80d5-b30b1806b1b0","service":"linkapi-test","statusCode":500},"status":"ERROR"}}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":"Server is running!"}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"298f0f90-c30f-11ec-b9e3-3975949be606","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"info","message":"Server is running!"}
+{"level":"info","message":"Server is running!"}
+{"level":"error","message":{"errorInfo":{"message":"\"file\" is required","responseId":"a25f19b0-c30f-11ec-9c67-4910023c017b","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"info","message":"Server is running!"}
+{"level":"error","message":{"errorInfo":{"message":"\"fileName\" is required","responseId":"0ab59c50-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"12a0e4b0-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}

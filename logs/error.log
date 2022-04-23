@@ -1,1 +1,7 @@
 {"level":"error","message":{"errorInfo":{"message":"This folder does not exists.","responseId":"db069060-c277-11ec-8e0d-d3d1642ed8d9","service":"linkapi-test","statusCode":404},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"Request failed with status code 500","responseId":"8fa6ce90-c287-11ec-80d5-b30b1806b1b0","service":"linkapi-test","statusCode":500},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"Request failed with status code 500","responseId":"b4e9f470-c2a0-11ec-80d5-b30b1806b1b0","service":"linkapi-test","statusCode":500},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"298f0f90-c30f-11ec-b9e3-3975949be606","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"file\" is required","responseId":"a25f19b0-c30f-11ec-9c67-4910023c017b","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"fileName\" is required","responseId":"0ab59c50-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"12a0e4b0-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
