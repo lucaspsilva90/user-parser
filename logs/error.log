@@ -5,3 +5,5 @@
 {"level":"error","message":{"errorInfo":{"message":"\"file\" is required","responseId":"a25f19b0-c30f-11ec-9c67-4910023c017b","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
 {"level":"error","message":{"errorInfo":{"message":"\"fileName\" is required","responseId":"0ab59c50-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
 {"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"12a0e4b0-c310-11ec-84b9-c34824700adc","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"cd30dba0-c31a-11ec-897a-df9c216f192b","service":"linkapi-test","statusCode":400},"status":"ERROR"}}
+{"level":"error","message":{"errorInfo":{"message":"\"folderName\" is required","responseId":"2bee61b0-c322-11ec-9188-2132c48a9340","service":"linkapi-test","statusCode":400},"status":"ERROR"}}

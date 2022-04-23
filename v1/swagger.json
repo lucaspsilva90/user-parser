@@ -1,0 +1,9 @@
+{
+  "swagger": "2.0",
+  "basePath": "/v1/",
+  "info": {
+    "title": "LinkAPI - Lucas",
+    "description": "This API can access the linkApi services and parse users, also has an implementation with goFile API.",
+    "version": "1.0.0"
+  }
+}

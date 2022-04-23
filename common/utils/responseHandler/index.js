@@ -10,7 +10,6 @@ const genericSuccessHandler = (successMessage) => {
     info: {
       responseId: v1(),
       service: config.service.name,
-      env: config.env,
       message,
       statusCode,
     },
