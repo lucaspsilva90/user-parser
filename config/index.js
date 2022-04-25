@@ -28,6 +28,7 @@ module.exports = {
       baseUrl: 'https://api.gofile.io',
       token: process.env.GOFILE_API_TOKEN,
       parentFolderId: process.env.GOFILE_PARENT_FOLDER_ID,
+      filesFolderName: 'Users Report',
     },
   },
 };

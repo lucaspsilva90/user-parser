@@ -6,7 +6,10 @@ const userWrapper = ({
   config,
   repository,
   mongo,
-  services,
+  services: {
+    linkApi,
+    goFile,
+  },
   RateLimiter,
   PromisePool,
   logger,
@@ -29,12 +32,12 @@ const userWrapper = ({
         },
       });
 
-      const firstResponse = await services.linkApi.getUsers(maxUsersPerRequest, 1);
+      const firstResponse = await linkApi.getUsers(maxUsersPerRequest, 1);
       users.push(firstResponse.data.usersList.item);
       await limiter.removeTokens(1);
 
       for (let page = 2; page <= Number(firstResponse.data.pagination.limit._text); page += 1) {
-        const response = await services.linkApi.getUsers(maxUsersPerRequest, page);
+        const response = await linkApi.getUsers(maxUsersPerRequest, page);
         await limiter.removeTokens(1);
         users.push(response.data.usersList.item);
       }
@@ -55,8 +58,8 @@ const userWrapper = ({
         .process(async (user, index) => {
           const userId = Number(user.id._text);
 
-          const addressInfo = await services.linkApi.getUserAdressesById(userId);
-          const contactInfo = await services.linkApi.getUserContactsById(userId);
+          const addressInfo = await linkApi.getUserAdressesById(userId);
+          const contactInfo = await linkApi.getUserContactsById(userId);
 
           await limiter.removeTokens(2);
 
@@ -122,9 +125,45 @@ const userWrapper = ({
         },
       });
 
+      logger.info({
+        STEP: 'CREATING FILE',
+        info: {
+          startTime: `${new Date().toLocaleDateString()} | ${new Date().toLocaleTimeString()}`,
+          usersCount: flatUsers.length,
+        },
+      });
+
+      const result = await linkApi.parseUsersFromDbToFile();
+
+      logger.info({
+        STEP: 'UPLOADING FILE TO GOFILE API',
+        info: {
+          startTime: `${new Date().toLocaleDateString()} | ${new Date().toLocaleTimeString()}`,
+          usersCount: flatUsers.length,
+        },
+      });
+
+      await mongo.connect(config.db.url, config.db.name);
+
+      const folder = await repository.Folders.findOne({ name: config.services.goFile.filesFolderName });
+
+      if (!folder) return onError({ message: 'This folder does not exists.', statusCode: 404 });
+
+      const { _id: folderId } = folder;
+
+      await goFile.uploadFile({ folderId, file: result });
+
+      logger.info({
+        STEP: 'FILE UPLOADED SUCCESSFULLY TO GOFILE API',
+        info: {
+          startTime: `${new Date().toLocaleDateString()} | ${new Date().toLocaleTimeString()}`,
+          usersCount: flatUsers.length,
+        },
+      });
+
       const response = {
         status: 200,
-        message: 'Proccess Finalized with no errors!',
+        message: 'Proccess finalized successfully!',
       };
 
       return onSuccess(response);

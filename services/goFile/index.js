@@ -38,10 +38,11 @@ const goFileService = ({
       } catch (error) {
         throw new CustomError.CustomError({
           message: error.message,
-          statusCode: error.response.status,
+          statusCode: error.response.status || 500,
         });
       }
     },
+
     async createFolder(folderName) {
       try {
         const response = await axios.put(`${baseUrl}/createFolder`, {
